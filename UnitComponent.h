@@ -6,10 +6,12 @@
 using namespace std;
 
 class UnitComponent{
-    void move();
-    void attack();
-    void add(UnitComponent* component);
-    void remove(UnitComponent* component);
+
+    public: 
+        virtual void move() = 0;
+        virtual void attack() = 0;
+        virtual void add(UnitComponent* component) = 0;
+        virtual void remove(UnitComponent* component) = 0;
 };
 
 #endif 
