@@ -5,7 +5,7 @@
 
 #include "LegionFactory.h"
 
-class RiverBankFactory : public LegionFactory
+class RiverbankFactory : public LegionFactory
 {
     public:
         virtual Infantry* createInfantry(); 
