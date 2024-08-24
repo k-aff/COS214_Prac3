@@ -1,11 +1,11 @@
-// CONCRETE FACTORY 3 - PART OF ABSTRACT FACTORY
+// CONCRETE FACTORY 1 - PART OF ABSTRACT FACTORY
 
-#ifndef OPENFIELDFACTORY_H
-#define OPENFIELDFACTORY_H
+#ifndef RIVERBANKFACTORY_H
+#define RIVERBANKFACTORY_H
 
 #include "LegionFactory.h"
 
-class OpenFieldFactory : public LegionFactory
+class RiverbankFactory : public LegionFactory
 {
     public:
         virtual Infantry* createInfantry(); 
