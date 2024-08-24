@@ -1,14 +1,20 @@
+// MEMENTO CLASS 
+
 #ifndef TACTICALMEMENTO_H
 #define TACTICALMEMENTO_H
 
-#include <iostream>
 #include "BattleStrategy.h"
 
-class TacticalMemento{
+class TacticalMemento
+{
+    private:
+        BattleStrategy* currentStrategy; 
+        void storeStrategy(BattleStrategy* s); 
 
     public:
-        void storeStrategy(BattleStrategy* strategy);
-};
+        friend class TacticalPlanner; 
+        BattleStrategy* getStrategy(); 
+        
+}; 
 
 #endif
-

@@ -1,17 +1,19 @@
 #ifndef WARARCHIVES_H
 #define WARARCHIVES_H
 
-#include <iostream>
 #include "TacticalMemento.h"
 
+#include <unordered_map>
 
-using namespace std;
+class WarArchives
+{
+    private:
+        std::unordered_map<std::string, TacticalMemento*> archive;
 
-class WarArchives{
-    
     public:
-        void addTacticalMememento(TacticalMemento* memento, string label);
-        TacticalMemento* removeTacticalMemento(string label);
+        void addTacticalMemento(TacticalMemento* memento, std::string label); 
+        TacticalMemento* removeTacticalMemento(std::string label); 
+    
 };
 
 #endif

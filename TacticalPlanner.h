@@ -1,17 +1,21 @@
+// ORIGINATOR - PART OF MEMENTO
+
 #ifndef TACTICALPLANNER_H
 #define TACTICALPLANNER_H
 
-#include <iostream>
+#include "BattleStrategy.h"
 #include "TacticalMemento.h"
 
-using namespace std;
+class TacticalPlanner
+{
+    private:
+        BattleStrategy* currentStrategy; 
+    
+    public: 
+        TacticalPlanner(BattleStrategy* s); 
+        TacticalMemento* createMemento(); 
+        void restoreMemento(TacticalMemento* memento); 
 
-class TacticalPlanner{
-
-    public:
-        TacticalMemento* createMemento();
-        void restoreMemento(TacticalMemento*);
-
-};
+}; 
 
 #endif
