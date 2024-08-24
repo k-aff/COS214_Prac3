@@ -10,8 +10,8 @@
 class Cavalry : public LegionUnit 
 {
     public:
-        virtual void move(); 
-        virtual void attack(); 
+        virtual void move() = 0; 
+        virtual void attack() = 0; 
         
 };
 
