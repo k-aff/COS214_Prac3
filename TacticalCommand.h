@@ -2,6 +2,7 @@
 #define TACTICALCOMMAND_H
 
 #include "BattleStrategy.h"
+#include "WarArchives.h"
 
 #include <iostream>
 
@@ -11,11 +12,13 @@ class TacticalCommand{
 
     protected:
         BattleStrategy* strategy;
+        WarArchives* archives;
 
     public:
+        TacticalCommand(WarArchives&);
         void setStategy(BattleStrategy* s);
         void executeStrategy();
-        void chooseBestStrategy();
+        void chooseBestStrategy(string);
         ~TacticalCommand();
 
 };

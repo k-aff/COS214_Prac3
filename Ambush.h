@@ -7,7 +7,7 @@
 using namespace std;
 
 
-class Ambush{
+class Ambush : public BattleStrategy{
     public:
         virtual void engage();
 };

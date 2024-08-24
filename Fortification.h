@@ -7,7 +7,7 @@
 using namespace std;
 
 
-class Fortification{
+class Fortification : public BattleStrategy{
     public:
         virtual void engage();
 };

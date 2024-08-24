@@ -6,7 +6,7 @@ using namespace std;
 #include <iostream>
 #include "BattleStrategy.h"
 
-class Flanking{
+class Flanking : public BattleStrategy{
     public:
         virtual void engage();
 };
