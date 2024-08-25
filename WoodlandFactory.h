@@ -12,7 +12,7 @@ class WoodlandFactory : public LegionFactory
         virtual Cavalry* createCavalry();
         virtual Artillery* createArtillery(); 
 
-        void deployArtillery(); 
+        virtual void deployArtillery(); 
 
 };
 

@@ -14,6 +14,7 @@ class LegionFactory
         virtual Cavalry* createCavalry() = 0;
         virtual Artillery* createArtillery() = 0;  
 
+        virtual void deployArtillery() = 0; 
 };
 
 #endif
