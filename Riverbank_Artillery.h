@@ -3,7 +3,7 @@
 #ifndef RIVERBANK_ARTILLERY_H
 #define RIVERBANK_ARTILLERY_H
 
-#include "Infantry.h"
+#include "Artillery.h"
 
 class Riverbank_Artillery : public Artillery 
 {

@@ -3,7 +3,7 @@
 #ifndef RIVERBANK_CAVALRY_H
 #define RIVERBANK_CAVALRY_H
 
-#include "Infantry.h"
+#include "Cavalry.h"
 
 class Riverbank_Cavalry : public Cavalry
 {

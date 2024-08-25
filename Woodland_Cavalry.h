@@ -3,9 +3,9 @@
 #ifndef WOODLAND_CAVALRY_H
 #define WOODLAND_CAVALRY_H
 
-#include "Infantry.h"
+#include "Cavalry.h"
 
-class Woodland_Cavalry : public Infantry 
+class Woodland_Cavalry : public Cavalry 
 {
     public:
         virtual void move(); 
