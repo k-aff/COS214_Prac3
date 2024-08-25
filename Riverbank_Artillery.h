@@ -5,7 +5,7 @@
 
 #include "Infantry.h"
 
-class Riverbank_Artillery : public Infantry 
+class Riverbank_Artillery : public Artillery 
 {
     public:
         virtual void move(); 

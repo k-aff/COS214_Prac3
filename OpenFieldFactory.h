@@ -12,7 +12,7 @@ class OpenFieldFactory : public LegionFactory
         virtual Cavalry* createCavalry();
         virtual Artillery* createArtillery(); 
 
-        void deployArtillery(); // ?? unknown return type
+        void deployArtillery(); 
 
 };
 
