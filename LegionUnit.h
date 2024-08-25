@@ -9,8 +9,8 @@
 class LegionUnit
 {
     public: 
-        virtual void move() = 0; // ??unkown return type
-        virtual void attack() = 0; // ??unkown return type
+        virtual void move() = 0; 
+        virtual void attack() = 0; 
 
 };
 
