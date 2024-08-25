@@ -1,7 +1,9 @@
 #include <iostream>
 using namespace std;
 
+#include "Ambush.h"
 #include "BattleStrategy.h"
+#include "Flanking.h"
 #include "Fortification.h"
 #include "LegionFactory.h"
 #include "OpenFieldFactory.h"
@@ -17,6 +19,7 @@ int main()
 
     //TESTING ABSTRACT FACTORY PATTERN 
         cout << "TESTING ABSTRACT FACTORY DESIGN PATTERN: " << endl << endl; 
+        
         //create factories 
         LegionFactory ** factories = new LegionFactory*[3]; 
         factories[0] = new OpenFieldFactory(); 
@@ -70,29 +73,101 @@ int main()
 
         //deletes
         for (int i=0; i<3; i++)
+        {
             delete factories[i]; 
+            factories[i] = nullptr; 
+        }
         delete [] factories; 
+        factories = nullptr; 
 
         for (int i=0; i<3; i++)
         {
             for (int j=0; j<3; j++)
+            {
                 delete legion[i][j];
+                legion[i][j] = nullptr; 
+            }
             delete [] legion[i];
+            legion[i] = nullptr; 
         }
         delete [] legion; 
+        legion = nullptr; 
 
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 
-    // //create warArchive 
-    // WarArchives *archive = new WarArchives();
-    // //create strategy
-    // BattleStrategy *s = new Fortification();  
-    // //create tacticalPlanner 
-    // TacticalPlanner *planner = new TacticalPlanner(s); //don't have battleStrategy yet
-    // TacticalMemento *mem = planner->createMemento(); 
-    // string sMem = "first mem"; 
-    // archive->addTacticalMemento(mem, sMem); 
+    //TESTING MEMENTO PATTERN 
+        cout << "TESTING MEMENTO DESIGN PATTERN: " << endl << endl; 
 
+        //creating tactical planner
+        BattleStrategy *ambush = new Ambush();  
+        TacticalPlanner *ambushPlanner = new TacticalPlanner(ambush); 
+        cout << "tactical planner for ambush created." << endl; 
+
+        BattleStrategy *flanking = new Flanking();  
+        TacticalPlanner *flankingPlanner = new TacticalPlanner(flanking); 
+        cout << "tactical planner for flanking created." << endl; 
+
+        BattleStrategy *fortification = new Fortification();  
+        TacticalPlanner *fortificationPlanner = new TacticalPlanner(fortification); 
+        cout << "tactical planner for fortification created." << endl << endl; 
+
+        //creating mementos 
+        TacticalMemento ** mementos = new TacticalMemento*[3]; 
+        mementos[0] = ambushPlanner->createMemento(); 
+        mementos[1] = flankingPlanner->createMemento(); 
+        mementos[2] = fortificationPlanner->createMemento(); 
+        cout << endl; 
+
+        //restoring mementos 
+        ambushPlanner->restoreMemento(mementos[0]);
+        flankingPlanner->restoreMemento(mementos[1]);
+        fortificationPlanner->restoreMemento(mementos[2]); 
+
+        //deletes 
+        delete ambush;
+        ambush = nullptr; 
+        delete ambushPlanner;
+        ambushPlanner = nullptr; 
+
+        delete flanking;
+        flanking = nullptr;
+        delete flankingPlanner;
+        flankingPlanner = nullptr; 
+
+        delete fortification; 
+        fortification = nullptr; 
+        delete fortificationPlanner;
+        fortificationPlanner = nullptr; 
+
+        for (int i=0; i<3; i++)
+        {
+            delete mementos[i];
+            mementos[i] = nullptr;
+        }
+        delete [] mementos;
+        mementos = nullptr;
+
+        cout << "----------------------------------------------------------------------------------------------" << endl; 
+
+    //TESTING STRATEGY PATTERN
+        cout << "TESTING STRATEGY DESIGN PATTERN: " << endl << endl; 
+
+        // //create warArchive 
+        // WarArchives *archive = new WarArchives();
+        // //create strategy
+        // BattleStrategy *s = new Fortification();  
+        // //create tacticalPlanner 
+        // TacticalPlanner *planner = new TacticalPlanner(s); //don't have battleStrategy yet
+        // TacticalMemento *mem = planner->createMemento(); 
+        // string sMem = "first mem"; 
+        // archive->addTacticalMemento(mem, sMem); 
+
+        cout << "----------------------------------------------------------------------------------------------" << endl; 
+
+    //TESTING COMPOSITE PATTERN
+        cout << "TESTING COMPOSITE DESIGN PATTERN: " << endl << endl;
+
+        cout << "----------------------------------------------------------------------------------------------" << endl; 
 
     return 0; 
 }
