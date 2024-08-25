@@ -3,9 +3,9 @@
 #ifndef OPENFIELD_ARTILLERY_H
 #define OPENFIELD_ARTILLERY_H
 
-#include "Infantry.h"
+#include "Artillery.h"
 
-class OpenField_Artillery : public Infantry 
+class OpenField_Artillery : public Artillery 
 {
     public:
         virtual void move(); 
