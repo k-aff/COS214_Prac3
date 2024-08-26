@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 class Ambush : public BattleStrategy{
     public:
         virtual void engage();

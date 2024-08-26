@@ -1,14 +1,14 @@
-#include "Openfield.h"
+#include "OpenField.h"
 
-void Openfield::move(){
+void OpenField::move(){
     
 }
-void Openfield::attack(){
+void OpenField::attack(){
 
 }
-void Openfield::add(UnitComponent* component){
+void OpenField::add(UnitComponent* component){
 
 }
-void Openfield::remove(UnitComponent* component){
+void OpenField::remove(UnitComponent* component){
 
 }

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Openfield : public UnitComponent{
+class OpenField : public UnitComponent{
     public: 
         void move();
         void attack();

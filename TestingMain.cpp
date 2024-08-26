@@ -140,7 +140,6 @@ int main()
         fortificationPlanner->restoreMemento(mementos[2]); 
 
         //deletes 
-
         delete ambush;
         ambush = nullptr; 
         delete ambushPlanner;
@@ -180,7 +179,7 @@ int main()
         TacticalPlanner *planner = new TacticalPlanner(s);
         TacticalMemento *mem = planner->createMemento(); 
         cout << endl; 
-        
+
         //add memento to archive 
         string sMem = "first mem"; 
         archive->addTacticalMemento(mem, sMem);
