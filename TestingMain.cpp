@@ -125,12 +125,22 @@ int main()
         mementos[2] = fortificationPlanner->createMemento(); 
         cout << endl; 
 
+        //testing get strategy 
+        BattleStrategy * s0 = mementos[0]->getStrategy(); 
+        s0->engage(); 
+        BattleStrategy * s1 = mementos[1]->getStrategy(); 
+        s1->engage(); 
+        BattleStrategy * s2 = mementos[2]->getStrategy(); 
+        s2->engage(); 
+        cout << endl; 
+
         //restoring mementos 
         ambushPlanner->restoreMemento(mementos[0]);
         flankingPlanner->restoreMemento(mementos[1]);
         fortificationPlanner->restoreMemento(mementos[2]); 
 
         //deletes 
+
         delete ambush;
         ambush = nullptr; 
         delete ambushPlanner;
@@ -161,22 +171,34 @@ int main()
 
         //create warArchive 
         WarArchives *archive = new WarArchives();
+        cout << "war archive created" << endl; 
+
         //create strategy
-        BattleStrategy *s = new Fortification();  
+        BattleStrategy *s = new Fortification(); 
+
         //create tacticalPlanner 
         TacticalPlanner *planner = new TacticalPlanner(s);
         TacticalMemento *mem = planner->createMemento(); 
-        // archive->addTacticalMemento(mem, "Fortification-10/10");
+        cout << endl; 
+        
+        //add memento to archive 
         string sMem = "first mem"; 
-        archive->addTacticalMemento(mem, sMem); 
+        archive->addTacticalMemento(mem, sMem);
+        
         //create tacticalCommand
-        // TacticalCommand* command = new TacticalCommand(*archive); Try pointer instead
         TacticalCommand* command = new TacticalCommand(archive);
+
+        //test set strategy for tactical command 
         BattleStrategy *strat = new Ambush();
         command->setStategy(strat);
         command->executeStrategy();
-        command->chooseBestStrategy("first mem");
-        // command->executeStrategy();
+        cout << endl; 
+
+        command->chooseBestStrategy(sMem);
+        command->executeStrategy();
+
+        delete s; 
+        s = nullptr; 
 
         delete planner;
         planner = nullptr;
@@ -192,13 +214,13 @@ int main()
     //TESTING COMPOSITE PATTERN
         cout << "TESTING COMPOSITE DESIGN PATTERN: " << endl << endl;
 
-        //creat UnitComponents
-        Riverbank *r = new Riverbank();
-        Openfield *o = new Openfield();
-        Woodland *w = new Woodland();
-        Legion *l = new Legion();
+        // //creat UnitComponents
+        // Riverbank *r = new Riverbank();
+        // Openfield *o = new Openfield();
+        // Woodland *w = new Woodland();
+        // Legion *l = new Legion();
 
-        l->add(r);
+        // l->add(r);
 
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 

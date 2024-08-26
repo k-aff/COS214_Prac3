@@ -27,6 +27,6 @@ void Legion::add(UnitComponent* component){
 
 void Legion::remove(UnitComponent* component){
 
-    vector<UnitComponent*>::iterator it = allUnits.;
-    allUnits.erase(it);
+    // vector<UnitComponent*>::iterator it = allUnits.;
+    // allUnits.erase(it);
 }

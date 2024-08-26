@@ -14,7 +14,6 @@ class TacticalMemento
     public:
         friend class TacticalPlanner; 
         BattleStrategy* getStrategy(); 
-        
 }; 
 
 #endif
