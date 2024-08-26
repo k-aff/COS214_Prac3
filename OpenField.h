@@ -9,9 +9,9 @@
 
 using namespace std;
 
-class Openfield : public UnitComponent{
+class OpenField : public UnitComponent{
     public: 
-        Openfield(LegionUnit** openfield, int size);
+        OpenField(LegionUnit** openfield, int size);
         void move();
         void attack();
         void add(UnitComponent* component);

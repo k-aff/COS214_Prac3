@@ -1,11 +1,11 @@
 #include "OpenField.h"
 
-Openfield::Openfield(LegionUnit** openfielders, int size){
+OpenField::OpenField(LegionUnit** openfielders, int size){
     
     openfieldUnits = openfielders;
     this->size = size;
 }
-void Openfield::move(){
+void OpenField::move(){
 
     for(int i=0; i<size; i++)
         openfieldUnits[i]->move();
@@ -13,7 +13,7 @@ void Openfield::move(){
     cout<< "Openfield units are moving" << endl << endl;
 }
 
-void Openfield::attack(){
+void OpenField::attack(){
 
     for(int i=0; i<size; i++)
         openfieldUnits[i]->attack();
@@ -21,10 +21,10 @@ void Openfield::attack(){
     cout<< "Openfield units are attacking" << endl << endl;
 }
 
-void Openfield::add(UnitComponent* component){
+void OpenField::add(UnitComponent* component){
     
 }
 
-void Openfield::remove(UnitComponent* component){
+void OpenField::remove(UnitComponent* component){
 
 }

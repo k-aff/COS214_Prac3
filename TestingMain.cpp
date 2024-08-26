@@ -233,7 +233,7 @@ int main()
         cout << "Created units of each soldier type for the woodland using Woodland factory." << endl << endl; 
 
         //instantiate the terrains
-        Openfield *o = new Openfield(openfieldUnits, 3);
+        OpenField *o = new OpenField(openfieldUnits, 3);
         Riverbank *r = new Riverbank(riverbankUnits,3);
         Woodland *w = new Woodland(woodlandUnits,3);
 
