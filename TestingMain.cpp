@@ -10,8 +10,14 @@ using namespace std;
 #include "RiverbankFactory.h"
 #include "TacticalPlanner.h"
 #include "TacticalMemento.h"
+#include "TacticalCommand.h"
 #include "WarArchives.h"
 #include "WoodlandFactory.h"
+#include "UnitComponent.h"
+#include "Legion.h"
+#include "Riverbank.h"
+#include "OpenField.h"
+#include "Woodland.h"
 
 int main()
 {
@@ -152,20 +158,47 @@ int main()
     //TESTING STRATEGY PATTERN
         cout << "TESTING STRATEGY DESIGN PATTERN: " << endl << endl; 
 
-        // //create warArchive 
-        // WarArchives *archive = new WarArchives();
-        // //create strategy
-        // BattleStrategy *s = new Fortification();  
-        // //create tacticalPlanner 
-        // TacticalPlanner *planner = new TacticalPlanner(s); //don't have battleStrategy yet
-        // TacticalMemento *mem = planner->createMemento(); 
-        // string sMem = "first mem"; 
-        // archive->addTacticalMemento(mem, sMem); 
+        //create warArchive 
+        WarArchives *archive = new WarArchives();
+        //create strategy
+        BattleStrategy *s = new Fortification();  
+        //create tacticalPlanner 
+        TacticalPlanner *planner = new TacticalPlanner(s);
+        TacticalMemento *mem = planner->createMemento(); 
+        // archive->addTacticalMemento(mem, "Fortification-10/10");
+        string sMem = "first mem"; 
+        archive->addTacticalMemento(mem, sMem); 
+        //create tacticalCommand
+        // TacticalCommand* command = new TacticalCommand(*archive); Try pointer instead
+        TacticalCommand* command = new TacticalCommand(archive);
+        BattleStrategy *strat = new Ambush();
+        command->setStategy(strat);
+        command->executeStrategy();
+        command->chooseBestStrategy("first mem");
+        // command->executeStrategy();
 
+        delete planner;
+        planner = nullptr;
+
+        delete mem;
+        mem = nullptr;
+
+        delete command;
+        command = nullptr;
+
+    
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 
     //TESTING COMPOSITE PATTERN
         cout << "TESTING COMPOSITE DESIGN PATTERN: " << endl << endl;
+
+        //creat UnitComponents
+        Riverbank *r = new Riverbank();
+        Openfield *o = new Openfield();
+        Woodland *w = new Woodland();
+        Legion *l = new Legion();
+
+        l->add(r);
 
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 

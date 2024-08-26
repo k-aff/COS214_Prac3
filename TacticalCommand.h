@@ -12,10 +12,10 @@ class TacticalCommand{
 
     protected:
         BattleStrategy* strategy;
-        WarArchives* archives;
+        WarArchives* archive;
 
     public:
-        TacticalCommand(WarArchives&);
+        TacticalCommand(WarArchives*);
         void setStategy(BattleStrategy* s);
         void executeStrategy();
         void chooseBestStrategy(string);
