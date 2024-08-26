@@ -11,8 +11,14 @@ using namespace std;
 #include "TacticalCommand.h"
 #include "TacticalPlanner.h"
 #include "TacticalMemento.h"
+#include "TacticalCommand.h"
 #include "WarArchives.h"
 #include "WoodlandFactory.h"
+#include "UnitComponent.h"
+#include "Legion.h"
+#include "Riverbank.h"
+#include "OpenField.h"
+#include "Woodland.h"
 
 int main()
 {
@@ -185,6 +191,14 @@ int main()
 
     //TESTING COMPOSITE PATTERN
         cout << "TESTING COMPOSITE DESIGN PATTERN: " << endl << endl;
+
+        //creat UnitComponents
+        Riverbank *r = new Riverbank();
+        Openfield *o = new Openfield();
+        Woodland *w = new Woodland();
+        Legion *l = new Legion();
+
+        l->add(r);
 
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 

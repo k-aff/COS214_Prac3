@@ -14,10 +14,6 @@ class Openfield : public UnitComponent{
         void attack();
         void add(UnitComponent* component);
         void remove(UnitComponent* component);
-
-    private:
-        vector<UnitComponent*> allUnits;
-
 };
 
 #endif

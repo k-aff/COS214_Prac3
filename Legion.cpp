@@ -1,21 +1,32 @@
-// #include "Legion.h"
+#include "Legion.h"
 
-// Legion::Legion(){
-// }
-// void Legion::move(){
-//     for (UnitComponent* unit : allUnits) 
-//         unit->move();
-// }
-// void Legion::attack(){
-//     for(UnitComponent* unit : allUnits) 
-//         unit->attack();
+Legion::Legion(){
 
-// }
-// void Legion::add(UnitComponent* component){
-//     allUnits.push_back(component);
-// }
-// void Legion::remove(UnitComponent* component){
-//     vector<UnitComponent*>::iterator it = std::remove(allUnits.begin(), allUnits.end(), component);
-        
-//     allUnits.erase(it, allUnits.end());
-// }
+}
+
+void Legion::move(){
+    for (UnitComponent* unit : allUnits) 
+        unit->move();
+
+    cout<< "Units moving" << endl;
+}
+
+void Legion::attack(){
+
+    for(UnitComponent* unit : allUnits) 
+        unit->attack();
+
+    cout<< "Units attacking" << endl;
+}
+
+void Legion::add(UnitComponent* component){
+    allUnits.push_back(component);
+
+    cout<< "Unit added successfully" << endl;
+}
+
+void Legion::remove(UnitComponent* component){
+
+    vector<UnitComponent*>::iterator it = allUnits.;
+    allUnits.erase(it);
+}

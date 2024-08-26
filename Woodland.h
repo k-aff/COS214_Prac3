@@ -1,5 +1,5 @@
-#ifndef OPENFIELD_H
-#define OPENFIELD_H
+#ifndef WOODLAND_H
+#define WOODLAND_H
 
 #include <iostream>
 #include <vector>
@@ -8,15 +8,12 @@
 
 using namespace std;
 
-class Openfield : public UnitComponent{
+class Woodland : public UnitComponent{
     public: 
         void move();
         void attack();
         void add(UnitComponent* component);
         void remove(UnitComponent* component);
-
-    private:
-        vector<UnitComponent*> allUnits;
 
 };
 
