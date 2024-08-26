@@ -15,7 +15,7 @@ class TacticalCommand{
         WarArchives* archive;
 
     public:
-        TacticalCommand(WarArchives*);
+        TacticalCommand(WarArchives&);
         void setStategy(BattleStrategy* s);
         void executeStrategy();
         void chooseBestStrategy(string);

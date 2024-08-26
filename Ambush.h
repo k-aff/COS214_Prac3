@@ -13,7 +13,7 @@ class Ambush : public BattleStrategy{
 };
 
 void Ambush::engage(){
-    cout<<"Engaging in battle by ambushing opposing army" << endl;
+    cout<<"Engaging in battle by ambushing opposing army" << endl << endl;
 }
 
 #endif

@@ -13,7 +13,7 @@ class Flanking : public BattleStrategy{
 
 
 void Flanking::engage(){
-    cout<<"Engaging in battle by flanking the enemy from the sides." << endl;
+    cout<<"Engaging in battle by flanking the enemy from the sides." << endl << endl;
 }
 
 #endif

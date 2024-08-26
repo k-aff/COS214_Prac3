@@ -2,8 +2,8 @@
 #include "WarArchives.h"
 #include "TacticalMemento.h"
 
-TacticalCommand::TacticalCommand(WarArchives* archive){
-    this->archive = archive;
+TacticalCommand::TacticalCommand(WarArchives& archive){
+    this->archive = &archive;
     this->strategy = nullptr;
 }
 void TacticalCommand::setStategy(BattleStrategy* s){
@@ -23,31 +23,33 @@ void TacticalCommand::executeStrategy(){
 
 void TacticalCommand::chooseBestStrategy(string label){
 
-    TacticalMemento* memento = nullptr;
+    TacticalMemento* memento;
 
     if(archive!=nullptr)
-        TacticalMemento* memento = archive->removeTacticalMemento(label); //something wrong
+        memento = archive->removeTacticalMemento(label); //something wrong
     else{
         cout<< "Archive not available :(" << endl;
         return;
     }
 
-    if(strategy!=nullptr|| memento!=nullptr){
+    if(strategy!=nullptr && memento!=nullptr){
         delete strategy;
     }
-    else if(memento==nullptr)
-        cout<<"Could not retrieve specified strategy from archive" << endl;
+    else if(memento==nullptr){
+        cout<<"Could not retrieve specified strategy from archive." << endl;
+        return;
+    }
     
     this->strategy = memento->getStrategy();
-    cout<< "Best strategy has been chosen! Ready to attack" << endl;
+    cout<< "Best strategy has been chosen! Ready to attack." << endl<<endl;
 }
 
 TacticalCommand::~TacticalCommand(){
 
-    // if(strategy!=nullptr){
-    //     delete strategy;
-    //     strategy = nullptr;
-    // }
+    if(strategy!=nullptr){
+        delete strategy;
+        strategy = nullptr;
+    }
 
     if(archive!=nullptr){
         delete archive;

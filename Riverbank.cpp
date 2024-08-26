@@ -1,14 +1,30 @@
 #include "Riverbank.h"
 
-void Riverbank::move(){
-    
+Riverbank::Riverbank(LegionUnit** riverbankers, int size){
+
+    riverbankUnits = riverbankers;
+    this->size = size;
 }
+void Riverbank::move(){
+
+    for(int i=0; i<size; i++)
+        riverbankUnits[i]->move();
+
+    cout<< "Riverbank units are moving" << endl << endl;
+}
+
 void Riverbank::attack(){
 
-}
-void Riverbank::add(UnitComponent* component){
+  for(int i=0; i<size; i++)
+        riverbankUnits[i]->attack();
 
+    cout<< "Riverbank units are attacking" << endl << endl;
 }
+
+void Riverbank::add(UnitComponent* component){
+    
+}
+
 void Riverbank::remove(UnitComponent* component){
 
 }

@@ -61,19 +61,19 @@ int main()
         cout << "created infantry units using each factory" << endl << endl; 
 
         //join all units in an array of legion units
-        LegionUnit *** legion = new LegionUnit**[3];
-        legion[0] = artilleryUnits; 
-        legion[1] = cavalryUnits; 
-        legion[2] = infantryUnits;
-        cout << "legion created with artillery, cavalry & infantry units" << endl << endl; 
+        LegionUnit *** legionUnit = new LegionUnit**[3];
+        legionUnit[0] = artilleryUnits; 
+        legionUnit[1] = cavalryUnits; 
+        legionUnit[2] = infantryUnits;
+        cout << "legion units created with artillery, cavalry & infantry units" << endl << endl; 
 
         //testing attack and move
         for (int i=0; i<3; i++)
         {
             for (int j=0; j<3; j++)
             {
-                legion[i][j]->attack(); 
-                legion[i][j]->move(); 
+                legionUnit[i][j]->attack(); 
+                legionUnit[i][j]->move(); 
             }
         }
 
@@ -90,14 +90,14 @@ int main()
         {
             for (int j=0; j<3; j++)
             {
-                delete legion[i][j];
-                legion[i][j] = nullptr; 
+                delete legionUnit[i][j];
+                legionUnit[i][j] = nullptr; 
             }
-            delete [] legion[i];
-            legion[i] = nullptr; 
+            delete [] legionUnit[i];
+            legionUnit[i] = nullptr; 
         }
-        delete [] legion; 
-        legion = nullptr; 
+        delete [] legionUnit; 
+        legionUnit = nullptr; 
 
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 
@@ -160,23 +160,35 @@ int main()
 
         //create warArchive 
         WarArchives *archive = new WarArchives();
+
         //create strategy
         BattleStrategy *s = new Fortification();  
+
         //create tacticalPlanner 
         TacticalPlanner *planner = new TacticalPlanner(s);
         TacticalMemento *mem = planner->createMemento(); 
-        // archive->addTacticalMemento(mem, "Fortification-10/10");
         string sMem = "first mem"; 
         archive->addTacticalMemento(mem, sMem); 
-        //create tacticalCommand
-        // TacticalCommand* command = new TacticalCommand(*archive); Try pointer instead
-        TacticalCommand* command = new TacticalCommand(archive);
-        BattleStrategy *strat = new Ambush();
-        command->setStategy(strat);
-        command->executeStrategy();
-        command->chooseBestStrategy("first mem");
-        // command->executeStrategy();
 
+        //create tacticalCommand
+        TacticalCommand* command = new TacticalCommand(*archive);
+        BattleStrategy *strat = new Ambush();
+        cout <<"Setting command strategy." << endl << endl;
+        command->setStategy(strat);
+
+        cout <<"Executing strategy using command"<< endl;
+        command->executeStrategy();
+
+        cout << "Choosing best strategy" << endl;
+        command->chooseBestStrategy("first mem");
+
+        cout << "Executing best strategy using command" << endl;
+        command->executeStrategy();
+
+        cout << "Attempting to choose best strategy using unknown memento label" << endl;
+        command->chooseBestStrategy("other mem");
+
+        //deletes
         delete planner;
         planner = nullptr;
 
@@ -186,20 +198,112 @@ int main()
         delete command;
         command = nullptr;
 
-    
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 
     //TESTING COMPOSITE PATTERN
         cout << "TESTING COMPOSITE DESIGN PATTERN: " << endl << endl;
 
-        //creat UnitComponents
-        Riverbank *r = new Riverbank();
-        Openfield *o = new Openfield();
-        Woodland *w = new Woodland();
-        Legion *l = new Legion();
+        //create LegionUnits
 
-        l->add(r);
+        factories = new LegionFactory*[3]; 
+        factories[0] = new OpenFieldFactory(); 
+        factories[1] = new RiverbankFactory(); 
+        factories[2] = new WoodlandFactory(); 
+        // cout << "all factories created" << endl << endl; 
 
+        //create a unit of each soldier type for the riverbank
+        LegionUnit ** openfieldUnits = new LegionUnit*[3]; 
+        openfieldUnits[0] = factories[0]->createArtillery(); 
+        openfieldUnits[1] = factories[0]->createCavalry(); 
+        openfieldUnits[2] = factories[0]->createInfantry(); 
+        cout << "Created units of each soldier type for the openfield using Openfield factory." << endl << endl; 
+
+        //create a unit of each soldier type for the openfield
+        LegionUnit ** riverbankUnits = new LegionUnit*[3]; 
+        riverbankUnits[0] = factories[1]->createArtillery(); 
+        riverbankUnits[1] = factories[1]->createCavalry(); 
+        riverbankUnits[2] = factories[1]->createInfantry(); 
+        cout << "Created units of each soldier type for the riverbank using Riverbank factory." << endl << endl; 
+
+        //create a unit of each soldier type for the woodland
+        LegionUnit ** woodlandUnits = new LegionUnit*[3]; 
+        woodlandUnits[0] = factories[2]->createArtillery(); 
+        woodlandUnits[1] = factories[2]->createCavalry(); 
+        woodlandUnits[2] = factories[2]->createInfantry(); 
+        cout << "Created units of each soldier type for the woodland using Woodland factory." << endl << endl; 
+
+        //instantiate the terrains
+        Openfield *o = new Openfield(openfieldUnits, 3);
+        Riverbank *r = new Riverbank(riverbankUnits,3);
+        Woodland *w = new Woodland(woodlandUnits,3);
+
+        cout<< "Creating a Legion consisting of Artillary, Infantry and Cavalry soldiers in the open fields, river bank and wood lands." << endl << endl;
+        //instantiate a legion
+        Legion *legion = new Legion();
+        //create a legion of all soldier types for all kinds of terrains
+        legion->add(o);
+        legion->add(r);
+        legion->add(w);
+
+        cout << endl;
+        cout<< "Entire legion consisting of Artillary, Infantry and Cavalry soldiers is moving in the open fields, river bank and wood lands." << endl << endl;
+        legion->move();
+
+        //testing remove
+        cout<< "Removing Wood land soldiers from Legion" << endl;
+        legion->remove(w);
+    
+        cout<< "Legion attacking without woodland" << endl << endl;
+        legion->attack();
+
+        //deletes
+        delete legion;
+        legion = nullptr;
+
+        delete o;
+        o = nullptr;
+
+        delete r;
+        r = nullptr;
+
+        delete w;
+        w = nullptr;
+
+
+        for (int i=0; i<3; i++)
+        {
+            delete factories[i]; 
+            factories[i] = nullptr; 
+        }
+        delete [] factories; 
+        factories = nullptr; 
+
+        for (int i=0; i<3; i++)
+        {
+            delete openfieldUnits[i]; 
+            openfieldUnits[i] = nullptr; 
+        }
+        delete [] openfieldUnits; 
+        openfieldUnits = nullptr; 
+
+        for (int i=0; i<3; i++)
+        {
+            delete riverbankUnits[i]; 
+            riverbankUnits[i] = nullptr; 
+        }
+        delete [] riverbankUnits; 
+        riverbankUnits = nullptr; 
+
+        for (int i=0; i<3; i++)
+        {
+            delete woodlandUnits[i]; 
+            woodlandUnits[i] = nullptr; 
+        }
+
+        delete [] woodlandUnits; 
+        woodlandUnits = nullptr; 
+         
+        cout << "END OF DEMO!" << endl << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl; 
 
     return 0; 

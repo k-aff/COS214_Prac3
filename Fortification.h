@@ -14,7 +14,7 @@ class Fortification : public BattleStrategy{
 
 
 void Fortification::engage(){
-    cout << "Engaging in battle by fortifying the base and strengthening defenses." << endl; 
+    cout << "Engaging in battle by fortifying the base and strengthening defenses." << endl << endl; 
 }
 
 #endif
