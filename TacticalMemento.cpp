@@ -10,9 +10,8 @@ void TacticalMemento::storeStrategy(BattleStrategy* s)
 
 BattleStrategy* TacticalMemento::getStrategy()
 {
-    if(currentStrategy!=nullptr)
+    if (this->currentStrategy != nullptr)
         return currentStrategy; 
-    else
-        cout<<"Strategy not set, cannot retrieve strategy form memento." << endl;
+    else cout<<"Strategy not set, cannot retrieve strategy form memento." << endl;
 }
 

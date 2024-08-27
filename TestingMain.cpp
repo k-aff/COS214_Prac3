@@ -8,6 +8,7 @@ using namespace std;
 #include "LegionFactory.h"
 #include "OpenFieldFactory.h"
 #include "RiverbankFactory.h"
+#include "TacticalCommand.h"
 #include "TacticalPlanner.h"
 #include "TacticalMemento.h"
 #include "TacticalCommand.h"
@@ -122,6 +123,15 @@ int main()
         mementos[0] = ambushPlanner->createMemento(); 
         mementos[1] = flankingPlanner->createMemento(); 
         mementos[2] = fortificationPlanner->createMemento(); 
+        cout << endl; 
+
+        //testing get strategy 
+        BattleStrategy * s0 = mementos[0]->getStrategy(); 
+        s0->engage(); 
+        BattleStrategy * s1 = mementos[1]->getStrategy(); 
+        s1->engage(); 
+        BattleStrategy * s2 = mementos[2]->getStrategy(); 
+        s2->engage(); 
         cout << endl; 
 
         //restoring mementos 

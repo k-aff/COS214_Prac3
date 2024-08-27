@@ -6,6 +6,7 @@ TacticalCommand::TacticalCommand(WarArchives& archive){
     this->archive = &archive;
     this->strategy = nullptr;
 }
+
 void TacticalCommand::setStategy(BattleStrategy* s){
     if(strategy!=nullptr)
         delete strategy;
@@ -34,6 +35,7 @@ void TacticalCommand::chooseBestStrategy(string label){
 
     if(strategy!=nullptr && memento!=nullptr){
         delete strategy;
+        strategy = nullptr;
     }
     else if(memento==nullptr){
         cout<<"Could not retrieve specified strategy from archive." << endl;
@@ -55,5 +57,5 @@ TacticalCommand::~TacticalCommand(){
         delete archive;
         archive = nullptr;
     }
-
+    
 }

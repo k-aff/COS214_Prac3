@@ -1,4 +1,5 @@
 #include "OpenField.h"
+#include "OpenField.h"
 
 OpenField::OpenField(LegionUnit** openfielders, int size){
     
