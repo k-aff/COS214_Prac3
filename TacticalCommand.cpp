@@ -27,7 +27,7 @@ void TacticalCommand::chooseBestStrategy(string label){
     TacticalMemento* memento;
 
     if(archive!=nullptr)
-        memento = archive->removeTacticalMemento(label); //something wrong
+        memento = archive->removeTacticalMemento(label); 
     else{
         cout<< "Archive not available :(" << endl;
         return;
